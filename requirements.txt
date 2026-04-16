@@ -1,0 +1,11 @@
+# Runtime
+# (No third-party dependencies for core functionality — stdlib only)
+
+# Optional: YAML config support
+PyYAML>=6.0
+
+# Development & Testing
+pytest>=7.4
+pytest-cov>=4.1
+flake8>=6.0
+black>=23.0

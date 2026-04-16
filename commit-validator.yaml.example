@@ -1,0 +1,26 @@
+# commit-validator.yaml
+# Example YAML configuration for git-commit-message-validator
+# Place this file in your repo root and it will be loaded automatically.
+# Requires: pip install PyYAML
+
+# Allowed commit types (replaces the default list entirely)
+commit_types:
+  - feat
+  - fix
+  - docs
+  - style
+  - refactor
+  - test
+  - chore
+  - perf
+  - ci
+  - build
+  # Uncomment to add custom types:
+  # - wip
+  # - hotfix
+  # - release
+  # - revert
+
+# Subject line length constraints
+max_subject_length: 100
+min_subject_length: 5
