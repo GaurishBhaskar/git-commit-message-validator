@@ -95,33 +95,6 @@ python install_hook.py
 
 ## 💻 Usage
 
-### CLI
-
-```bash
-# Validate a single message
-python -m src.cli "feat: add login authentication"
-
-# With scope
-python -m src.cli "fix(auth): resolve JWT expiry bug"
-
-# Use a custom config
-python -m src.cli --config my-config.json "chore: update deps"
-
-# Get JSON output (useful for scripts)
-python -m src.cli --json "feat: add feature"
-
-# Verbose breakdown
-python -m src.cli --verbose "feat(api): add rate limiting"
-
-# List all allowed types
-python -m src.cli --list-types
-
-# Read from stdin (git hook mode)
-echo "docs: update README" | python -m src.cli --stdin
-```
-
----
-
 ## ✅ Valid vs ❌ Invalid Examples
 
 | Message | Result | Reason |
@@ -155,100 +128,6 @@ echo "docs: update README" | python -m src.cli --stdin
 
 ---
 
-## ⚙️ Configuration
-
-Customize allowed types and limits via `config.json`:
-
-```json
-{
-  "commit_types": ["feat", "fix", "docs", "wip", "hotfix", "release"],
-  "max_subject_length": 100,
-  "min_subject_length": 5
-}
-```
-
-Or use YAML (`commit-validator.yaml`):
-
-```yaml
-commit_types:
-  - feat
-  - fix
-  - wip
-  - hotfix
-max_subject_length: 72
-min_subject_length: 5
-```
-
-The validator looks for config files in this order:
-1. `--config` CLI flag
-2. `commit-validator.json`
-3. `commit-validator.yaml`
-4. `config.json`
-5. Built-in defaults
-
----
-
-## 🪝 Git Hook
-
-Once installed, invalid commits are blocked **automatically**:
-
-```bash
-$ git commit -m "bug fixed"
-
-────────────────────────────────────────────────────────────
-  ❌ COMMIT REJECTED — Invalid commit message format
-────────────────────────────────────────────────────────────
-  Message : "bug fixed"
-  Reason  : ❌ Missing colon separator. Format: <type>: <subject>
-
-  ✏️  Conventional Commits format:
-      <type>[(scope)][!]: <subject>
-
-  Examples:
-      feat: add login authentication
-      fix(auth): resolve JWT expiry bug
-────────────────────────────────────────────────────────────
-```
-
----
-
-## 🧪 Running Tests
-
-```bash
-# Run all tests with verbose output
-pytest tests/ -v
-
-# With coverage report
-pytest tests/ -v --cov=src --cov-report=term-missing
-
-# Run a specific test class
-pytest tests/test_validator.py::TestValidMessages -v
-```
-
----
-
-## 🤖 GitHub Actions CI
-
-The CI pipeline runs automatically on every push and pull request:
-
-1. **Lint** — `black` format check + `flake8` style check
-2. **Test** — `pytest` across Python 3.9, 3.10, 3.11, 3.12
-3. **Validate** — runs the CLI on real examples to confirm it works end-to-end
-
-See [`.github/workflows/ci.yml`](.github/workflows/ci.yml) for the full pipeline.
-
----
-
-## 📸 Screenshots
-
-> _Add screenshots here after running the tool locally_
-
-| CLI Output — Valid | CLI Output — Invalid |
-|---|---|
-| `[screenshot]` | `[screenshot]` |
-
----
-
 ## 🔮 Future Scope
 
 - [ ] **Interactive mode** — step-by-step commit message builder
@@ -263,7 +142,6 @@ See [`.github/workflows/ci.yml`](.github/workflows/ci.yml) for the full pipeline
 
 ## 🤝 Contributing
 
-Contributions are welcome! Here's how to get started:
 
 1. Fork the repository
 2. Create a feature branch: `git checkout -b feat/your-feature`
@@ -272,22 +150,7 @@ Contributions are welcome! Here's how to get started:
 5. Run `pytest tests/ -v` to confirm everything passes
 6. Push and open a pull request
 
-Please follow the [Conventional Commits](https://www.conventionalcommits.org/) standard for all commit messages.
 
 ---
 
-## 📄 License
 
-MIT License — see [LICENSE](LICENSE) for details.
-
----
-
-## 👤 Author
-
-**Your Name**
-- GitHub: [@yourusername](https://github.com/yourusername)
-- LinkedIn: [yourprofile](https://linkedin.com/in/yourprofile)
-
----
-
-> Built with ❤️ to make Git history readable again.
